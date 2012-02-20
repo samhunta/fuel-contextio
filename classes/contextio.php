@@ -13,6 +13,7 @@ class ContextIO
 	public static function _init()
 	{
 		self::$_instance = new ContextIOClient();
+		return self::$_instance;
 	}
 
 	public static function __callStatic($method, $arguments)
