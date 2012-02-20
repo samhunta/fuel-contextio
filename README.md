@@ -12,20 +12,13 @@ The official PHP-ContextIO library currently has no documentation but if needed 
 
 Copy `config/contextio.php` into your `app/config/` directory and set the default access key and secret key.
 
-You can retrieve instance based on your configuration with
+You can now call any of the API methods on the `ContextIO` object.
 
-```php
-ContextIO::instance();
-```
-
-Or you can create a new instance without default configuration
+You can also use the object without the default configuration:
 
 ```php
 // Using these properties
-$contextio = ContextIO::forge( $access_key, $secret_key );
-
-// Or an array of configuration
-$contextio = ContextIO::forge(array(
+ContextIO::forge(array(
       'secret_key' => 'secret key goes here',
       'access_key' => 'access key goes here',
 ));
@@ -38,5 +31,5 @@ You can call any method from the official PHP-ContextIO library.
 Here's how you would return an array of accounts
 
 ```php
-ContextIO::instance()->listAccounts()->getData();
+ContextIO::listAccounts()->getData();
 ```

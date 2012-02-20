@@ -5,4 +5,5 @@ return array(
 	'secret_key'  => '',
 	'use_ssl'     => true,
 	'endpoint'    => 'api.context.io',
+	'api_version' => '2.0',
 );
