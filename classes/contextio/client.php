@@ -45,13 +45,17 @@ class ContextIOClient
 	 * @param $key Your Context.IO OAuth consumer key
 	 * @param $secret Your Context.IO OAuth consumer secret
 	 */
-	public function __construct() {
-		
-		$this->oauthKey     = \Config::get('contextio.access_key');
-		$this->oauthSecret  = \Config::get('contextio.secret_key');
-		$this->ssl          = \Config::get('contextio.use_ssl');
-		$this->endPoint     = \Config::get('contextio.endpoint');
-		$this->apiVersion   = \Config::get('contextio.api_version');
+	public function __construct($config = array()) {
+		$this->forge($config);
+	}
+
+	public static function forge($config = array()) {
+		$config = array_merge(\Config::get('contextio'), $config);
+		$this->oauthKey     = $config['access_key'];
+		$this->oauthSecret  = $config['secret_key'];
+		$this->ssl          = $config['use_ssl'];
+		$this->endPoint     = $config['endpoint'];
+		$this->apiVersion   = $config['api_version'];
 		$this->saveHeaders  = false;
 		$this->lastResponse = null;
 		$this->authHeaders  = true;
