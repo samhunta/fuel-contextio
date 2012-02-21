@@ -40,17 +40,21 @@ class ContextIOClient
 	protected $authHeaders;
 
 	/**
-	 * Instantiate a new ContextIO object. Your OAuth consumer key and secret can be
+	 * Instantiate a new ContextIOClient object. Your OAuth consumer key and secret can be
 	 * found under the "settings" tab of the developer console (https://console.context.io/#settings)
-	 * @param $key Your Context.IO OAuth consumer key
+	 *
+	 * @param $config Raw fuel configuration
 	 * @param $secret Your Context.IO OAuth consumer secret
 	 */
-	public function __construct($config = array()) {
-		$this->forge($config);
-	}
-
-	public static function forge($config = array()) {
+	public function __construct($config = array(), $secret = null)
+	{
+		if( is_string($config) && is_string($secret) )
+		{
+			$config = array('access_key' => $config, 'secret_key' => $secret );
+		}
+		
 		$config = array_merge(\Config::get('contextio'), $config);
+
 		$this->oauthKey     = $config['access_key'];
 		$this->oauthSecret  = $config['secret_key'];
 		$this->ssl          = $config['use_ssl'];

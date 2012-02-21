@@ -22,6 +22,9 @@ ContextIO::forge(array(
       'secret_key' => 'secret key goes here',
       'access_key' => 'access key goes here',
 ));
+
+// Or using these properties
+ContextIO::forge( $access_key, $secret_key );
 ```
 
 ## Examples
